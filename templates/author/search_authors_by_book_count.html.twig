@@ -1,0 +1,33 @@
+{# templates/search_authors_by_book_count.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Recherche d'auteurs par nombre de livres</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.min) }}
+    {{ form_row(form.max) }}
+    <button type="submit" class="btn btn-primary">Rechercher</button> {# Ajoutez le bouton de soumission ici #}
+    {{ form_end(form) }}
+
+    <h2>Résultats</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Emails</th>
+                <th>Nombre de livres</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for author in authors %}
+                <tr>
+                    <td>{{ author.username }}</td>
+                    <td>{{ author.email }}</td>
+                    <td>{{ author.nb_books }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

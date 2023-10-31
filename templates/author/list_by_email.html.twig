@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Auteurs par Email
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des Auteurs par Email</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Username</th>
+				<th>Email</th>
+				<th>Number of books </th>
+                <th>Actions</th>
+                
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for author in authors %}
+				<tr>
+					<td>{{ author.username }}</td>
+					<td>{{ author.email }}</td>
+                    <td>{{ author.getNbBooks() }}</td>
+                    <td><a href="{{ path('app_edit', {'id': author.id}) }}">edit</a>
+                    <a href="{{ path('app_delete', {'id': author.id}) }}">delete</a>
+
+    </td>
+
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

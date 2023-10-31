@@ -1,0 +1,53 @@
+{# templates/book/liste.html.twig #}
+{# page de rechechre par ref #}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Livres</title>
+</head>
+<body>
+    <h1>Liste des Livres</h1>
+
+    {{ form_start(searchForm) }}
+    {{ form_row(searchForm.ref) }}
+    <button type="submit" class="btn btn-primary">Rechercher</button>
+    {{ form_end(searchForm) }}
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Référence</th>
+                <th>Title</th>
+                 <th>Date de Publication</th>
+                 <th>Publié</th>
+                <th>Catégorie</th>
+                <th>author</th>
+                <th>Actions</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.ref }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.publicationDate|date('d/m/Y') }}</td>
+                     <td>{{ book.published ? '1' : '0' }}</td>
+                    <td>{{ book.category }}</td>
+                    <td>{{ book.author.username }}</td>
+                    <td>
+					<a href="{{ path('app_detailBook', {'ref': book.ref}) }}">show</a>
+					<a href="{{ path('app_editBook', {'ref': book.ref}) }}">edit</a>
+
+
+				</td>
+
+                   
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

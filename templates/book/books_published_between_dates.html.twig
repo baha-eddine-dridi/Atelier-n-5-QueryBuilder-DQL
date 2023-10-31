@@ -1,0 +1,29 @@
+{# templates/books_published_between_dates.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des livres publiés entre 2014-01-01 et 2018-12-31</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Catégorie</th>
+                <th>Date de publication</th>
+                <th>Publié</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author.username }}</td>
+                    <td>{{ book.category }}</td>
+                    <td>{{ book.publicationDate|date('d/m/Y') }}</td>
+                    <td>{{ book.published ? '1' : '0' }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
